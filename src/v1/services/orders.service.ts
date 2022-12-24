@@ -17,17 +17,15 @@ export class OrdersService {
     seconds: number,
     personnelType: PersonnelEnum,
   ): Promise<void> {
-    const availablePersonnel = ['test'];
-    // const availablePersonnel = await this.repositoryService?.getAvailability(
-    //   personnelType,
-    // );
-    if (availablePersonnel?.length) {
+    const availableEmployeeId = await this.personnelService?.getAvailability(
+      personnelType,
+    );
+    if (availableEmployeeId) {
       return new Promise((resolve) => {
         setTimeout(resolve, seconds * 1000);
       });
     } else {
-      // throw new Error('Check');
-      return null;
+      throw new Error('Check');
     }
   }
 

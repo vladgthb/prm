@@ -11,7 +11,7 @@ export class PersonnelService {
     private personnelRepository: Repository<Personnel>,
   ) {}
 
-  async getAvailability(personnelType: PersonnelEnum): Promise<string[]> {
+  async getAvailability(personnelType: PersonnelEnum): Promise<number> {
     switch (personnelType) {
       case PersonnelEnum.DOUGH:
         return await this.getDoughChefAvailability();
@@ -22,33 +22,38 @@ export class PersonnelService {
       case PersonnelEnum.WAITER:
         return await this.getWaitersAvailability();
       default:
-        return [];
+        return null;
     }
   }
 
-  private async getDoughChefAvailability(): Promise<string[]> {
+  private async getDoughChefAvailability(): Promise<number> {
     return await this.getAvailabilityFromRepository(PersonnelEnum.DOUGH);
   }
 
-  private async getToppingChefAvailability(): Promise<string[]> {
+  private async getToppingChefAvailability(): Promise<number> {
     return await this.getAvailabilityFromRepository(PersonnelEnum.TOPPING);
   }
 
-  private async getOvenChefAvailability(): Promise<string[]> {
+  private async getOvenChefAvailability(): Promise<number> {
     return await this.getAvailabilityFromRepository(PersonnelEnum.OVEN);
   }
 
-  private async getWaitersAvailability(): Promise<string[]> {
+  private async getWaitersAvailability(): Promise<number> {
     return await this.getAvailabilityFromRepository(PersonnelEnum.WAITER);
   }
 
   private async getAvailabilityFromRepository(
     personnelType: PersonnelEnum,
     attempts = 0,
-  ): Promise<string[]> {
-    const availablePersons = ['test'];
-    if (availablePersons?.length) {
-      return [''];
+  ): Promise<number> {
+    const availablePersons = await this.personnelRepository.findOne({
+      where: {
+        type: personnelType,
+        available: true,
+      }
+    })
+    if (!availablePersons?.id) {
+      return availablePersons.id;
     } else {
       console.log(
         `No any employee available to process "${personnelType}" service. Waiting a second to check again`,
