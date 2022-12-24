@@ -9,10 +9,9 @@ async function initApi() {
     .setTitle('Pizza Restaurant Management')
     .setDescription('Swagger for the "Pizza Restaurant Management API"')
     .setVersion('1.0')
-    .addTag('test api')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, document);
+  SwaggerModule.setup('api/v1/swagger', app, document);
 
   await app.listen(3000);
 }
