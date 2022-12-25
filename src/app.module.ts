@@ -11,8 +11,8 @@ import { Topping } from 'src/v1/entities/topping.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3308,
+      host: 'mysql',
+      port: 3306,
       username: 'root',
       password: 'root',
       database: 'prm',

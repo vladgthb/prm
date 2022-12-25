@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotImplementedException } from "@nestjs/common";
 import { CreateOrderDto } from "src/v1/dto/create-order.dto";
 import {
   DOUGH_CHEF_PROCESSING_TIME_IN_SECONDS,
@@ -114,14 +114,14 @@ export class OrdersService {
   }
 
   async getOrder(): Promise<string> {
-    return 'Test order';
+    throw new NotImplementedException();
   }
 
   async updateOrder(): Promise<string> {
-    return 'updated order';
+    throw new NotImplementedException();
   }
 
   async deleteOrder(): Promise<string> {
-    return 'deleted order';
+    throw new NotImplementedException();
   }
 }

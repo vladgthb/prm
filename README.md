@@ -33,7 +33,7 @@ orders. The report should contain:
 
 ## Starting the application with docker-compose
 ```bash
-docker-compose up -d
+npm run docker:start
 ```
 
 ## Manual Installation
@@ -70,3 +70,39 @@ $ npm run test:cov
 
 ## Logic
 
+```bash
+[
+  {
+    "table_number": 1,
+    "pizza_name": "my custom pizza 1",
+    "toppings": [
+      { "name": "onion" },
+      { "name": "paprika" }
+    ]
+  },
+  {
+    "table_number": 12,
+    "pizza_name": "my custom pizza 3",
+    "toppings": [
+      { "name": "onion" },
+      { "name": "paprika" }
+    ]
+  },
+  {
+    "table_number": 4,
+    "pizza_name": "my custom pizza 5",
+    "toppings": [
+      { "name": "onion" },
+      { "name": "paprika" }
+    ]
+  },
+  {
+    "table_number": 2,
+    "pizza_name": "my custom pizza 2",
+    "toppings": [
+      { "name": "onion" },
+      { "name": "paprika" }
+    ]
+  }
+]
+```

@@ -1,4 +1,7 @@
 version: '3.9'
+networks:
+  default:
+    driver: bridge
 services:
   backend:
     build:
@@ -12,6 +15,8 @@ services:
     command: npm run start:dev
     ports:
       - "3000:3000"
+    expose:
+      - "3308"
     links:
       - mysql
     depends_on:
@@ -24,5 +29,10 @@ services:
       MYSQL_PASSWORD: root
     ports:
       - "3308:3306"
+    expose:
+      - "3308"
     volumes:
       - "./scripts/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql"
+volumes:
+  mysql:
+    driver: local
