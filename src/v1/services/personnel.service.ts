@@ -26,34 +26,42 @@ export class PersonnelService {
     }
   }
 
+  async setPersonnelStatusBusy(id: number): Promise<void> {
+    await this.updatePersonAvailability(id, false);
+  }
+
+  async setPersonnelStatusAvailable(id: number): Promise<void> {
+    await this.updatePersonAvailability(id, true);
+  }
+
   private async getDoughChefAvailability(): Promise<number> {
-    return await this.getAvailabilityFromRepository(PersonnelEnum.DOUGH);
+    return await this.getAvailablePerson(PersonnelEnum.DOUGH);
   }
 
   private async getToppingChefAvailability(): Promise<number> {
-    return await this.getAvailabilityFromRepository(PersonnelEnum.TOPPING);
+    return await this.getAvailablePerson(PersonnelEnum.TOPPING);
   }
 
   private async getOvenChefAvailability(): Promise<number> {
-    return await this.getAvailabilityFromRepository(PersonnelEnum.OVEN);
+    return await this.getAvailablePerson(PersonnelEnum.OVEN);
   }
 
   private async getWaitersAvailability(): Promise<number> {
-    return await this.getAvailabilityFromRepository(PersonnelEnum.WAITER);
+    return await this.getAvailablePerson(PersonnelEnum.WAITER);
   }
 
-  private async getAvailabilityFromRepository(
+  private async getAvailablePerson(
     personnelType: PersonnelEnum,
-    attempts = 0,
+    attempts = 1,
   ): Promise<number> {
-    const availablePersons = await this.personnelRepository.findOne({
+    const availablePerson = await this.personnelRepository.findOne({
       where: {
         type: personnelType,
         available: true,
       }
     })
-    if (!availablePersons?.id) {
-      return availablePersons.id;
+    if (availablePerson?.id) {
+      return availablePerson.id;
     } else {
       console.log(
         `No any employee available to process "${personnelType}" service. Waiting a second to check again`,
@@ -65,10 +73,19 @@ export class PersonnelService {
       console.log(`
         Checking availability for process "${personnelType}" - attempt #${attempts}.
       `);
-      return await this.getAvailabilityFromRepository(
+      return await this.getAvailablePerson(
         personnelType,
         attempts + 1,
       );
     }
+  }
+
+  private async updatePersonAvailability(
+    id: number,
+    available: boolean,
+  ): Promise<void> {
+    await this.personnelRepository.update({ id }, {
+      available,
+    });
   }
 }

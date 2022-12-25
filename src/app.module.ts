@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrdersModule } from 'src/v1/modules/orders.module';
 import { Personnel } from 'src/v1/entities/personnel.entity';
+import { Order } from 'src/v1/entities/order.entity';
+import { Topping } from 'src/v1/entities/topping.entity';
 
 @Module({
   imports: [
@@ -14,8 +16,8 @@ import { Personnel } from 'src/v1/entities/personnel.entity';
       username: 'root',
       password: 'root',
       database: 'prm',
-      entities: [Personnel],
-      synchronize: true,
+      entities: [Personnel, Order, Topping],
+      synchronize: false,
     }),
     OrdersModule,
   ],

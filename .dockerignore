@@ -44,3 +44,4 @@ lerna-debug.log*
 
 # Volums
 /mysql
+/scripts

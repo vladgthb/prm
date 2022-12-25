@@ -13,9 +13,11 @@ import {
   ApiNoContentResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiBodyOptions,
+  ApiBody,
   ApiTags,
 } from '@nestjs/swagger';
-import { CreateOrderDto } from 'src/v1/dto/CreateOrderDto';
+import { CreateOrderDto } from 'src/v1/dto/create-order.dto';
 import { ResponseData } from 'src/interfaces/standard-response.interface';
 import { OrdersService } from 'src/v1/services/orders.service';
 
@@ -24,21 +26,18 @@ import { OrdersService } from 'src/v1/services/orders.service';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
-  // @ApiOperation({
-  //   description: 'Creates and returns the resource details.',
-  //   requestBody: {
-  //     content: {
-  //       orders: { schema: CreateOrderDto },
-  //     },
-  //   },
-  // })
+  @ApiBody({
+    description: 'List of orders',
+    type: CreateOrderDto,
+    isArray: true,
+  })
   @Post('orders')
   async createOrders(
-    // @Body() { orders }: { orders: Array<CreateOrderDto> },
-  ): Promise<ResponseData<'status', string>> {
+    @Body() orders: CreateOrderDto[],
+  ): Promise<ResponseData<'report', string>> {
     return {
       data: {
-        status: await this.ordersService.createOrders(),
+        report: await this.ordersService.createOrders(orders),
       },
     };
   }
