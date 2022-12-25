@@ -1,5 +1,7 @@
 # PRM - Pizza Restaurant Management
 
+![prm logic](https://github.com/vladgthb/prm/blob/master/images/logic.png?raw=true)
+
 ## Description
 
 The restaurant receives array of orders, while each order is for one Pizza that contains an array of
@@ -35,6 +37,9 @@ orders. The report should contain:
 ```bash
 npm run docker:start
 ```
+This command will execute the app on Docker container.
+The API is listening 3000 port.
+http://localhost:3000/api/v1/swagger
 
 ## Manual Installation
 
