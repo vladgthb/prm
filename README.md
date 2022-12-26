@@ -164,6 +164,8 @@ Here is the example of input to create orders
     archived by simply defining the sql script and link it to the MySQL docker's container <br />
     https://github.com/vladgthb/prm/blob/master/scripts/mysql/init.sql
 
+    ![availability schema](https://github.com/vladgthb/prm/blob/master/images/table_availability.png?raw=true)
+
     The employees have availability prop in the DB status, which shows their availability to take a process. So 
     whenever there is a new process, we can check the status and execute the step only if the employee is available.
     If not available then wait 1 second to check the status again.
