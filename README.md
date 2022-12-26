@@ -115,7 +115,7 @@ Endpoint of the orders POST is
 http://localhost:3000/api/v1/orders
 
 ```bash
-curl -X POST https://reqbin.com/echo/post/json
+curl -X POST http://localhost:3000/api/v1/orders
    -H 'Content-Type: application/json'
    -d '<Your orders json input see below example>'
 ```
