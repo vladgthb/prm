@@ -47,8 +47,18 @@ npm run docker:stop
 npm run docker:clean:all
 ```
 This command will execute the app on Docker container.
-The API is listening 3000 port.
+##### API access
+The API is listening 3000 port
 http://localhost:3000/api/v1/swagger
+##### MySQL DB
+The database can be accessed through 3008 port. You can use following credentials to connect to DB
+```bash
+MYSQL_HOST: localhost
+MYSQL_PORT: 3008
+MYSQL_ROOT_PASSWORD: root
+MYSQL_DATABASE: prm
+MYSQL_PASSWORD: root
+```
 
 ### Status check:
 To check the container status you can execute this command or use Docker UI
@@ -57,6 +67,7 @@ docker container ls
 ```
 After that you can see following containers run on your machine
 ![docker](https://github.com/vladgthb/prm/blob/master/images/terminal.png?raw=true)
+Or use the Docker desktop
 ![docker](https://github.com/vladgthb/prm/blob/master/images/docker.png?raw=true)
 
 
