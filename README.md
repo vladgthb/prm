@@ -179,3 +179,20 @@ Here is the example of input to create orders
     https://github.com/vladgthb/prm/blob/master/src/v1/services/orders.service.ts#L99
 
     - Processing Logic of Each Order
+        The first step of each order should be done by Dough Chef. That is why in this stage API checks status of 
+        the employee from DB.
+    
+        https://github.com/vladgthb/prm/blob/master/src/v1/services/orders.service.ts#L28
+        
+        If not available then the API will wait a second before next attempt. Each attempt is logged inside the 
+      service docker container.
+      ![orders schema](https://github.com/vladgthb/prm/blob/master/images/report_attempt.png?raw=true)
+        If the appropriate employee is available then, changing the employee status as busy in the DB and then 
+      proceeding with the step preparation - which is simply to wait proper time
+      https://github.com/vladgthb/prm/blob/master/src/v1/services/orders.service.ts#L35
+    - Reports
+      In the end when all orders are completed, the API is logging the timings inside the API docker's container
+      https://github.com/vladgthb/prm/blob/master/src/v1/services/orders.service.ts#L103
+      ![orders schema](https://github.com/vladgthb/prm/blob/master/images/report_logging.png?raw=true)
+      As well as sending the report data as an request's response
+      ![orders schema](https://github.com/vladgthb/prm/blob/master/images/report_swagger.png?raw=true)
