@@ -34,6 +34,7 @@ orders. The report should contain:
 - [Manual Installation](#manual-installation)
 - [Running the app](#running-the-app)
 - [Logic Description](#logic-description)
+- [ToDo](#todo)
 
 ## Prerequisites
 - Before starting app, you need to install docker and docker-compose on your machine.
@@ -198,3 +199,9 @@ Here is the example of input to create orders
       ![orders schema](https://github.com/vladgthb/prm/blob/master/images/report_logging.png?raw=true)
       As well as sending the report data as an request's response
       ![orders schema](https://github.com/vladgthb/prm/blob/master/images/report_swagger.png?raw=true)
+
+## ToDo
+
+- Logger handler
+- Event handler
+- Increase Test Coverage
