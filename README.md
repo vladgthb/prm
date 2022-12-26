@@ -6,25 +6,26 @@
 
 The restaurant receives array of orders, while each order is for one Pizza that contains an array of
 toppings.
-<br />
-The dough-to-pizza pipeline is:
+##### INPUT: The dough-to-pizza pipeline is:
 - Dough chef -> Topping chef -> Oven -> Serving
-<br />
-<br />
+
 When a certain station within the pipeline is completed, the Pizza moves to the next one. There are no
 dependencies between the orders in the arrays - when an order is ready to be served, it is being
 deployed to the customer.
-The restaurant personnel are:
- 2 dough chefs - each chef can handle single dough at a time. It takes 7 seconds per single dough.
- 3 topping chefs - each chef can handle 2 toppings at a time. It takes 4 seconds to put each
+<br />
+<br />
+##### LOGIC/CRITERIA: The restaurant personnel are:
+- 2 dough chefs - each chef can handle single dough at a time. It takes 7 seconds per single dough.
+- 3 topping chefs - each chef can handle 2 toppings at a time. It takes 4 seconds to put each
 topping on the Pizza.
- 1 oven that takes one pizza each time and cook it for 10 seconds.
- 2 waiters that serve the pizza to the customers. From the kitchen to the table it takes 5 seconds.
+- 1 oven that takes one pizza each time and cook it for 10 seconds.
+- 2 waiters that serve the pizza to the customers. From the kitchen to the table it takes 5 seconds.
+##### REPORT:
 Each process should print logs (start and end time).
 In the end, when all the orders had been served, you need to print a report about the complete set of
 orders. The report should contain:
- The preparation time from start to end.
- The preparation time for each order.
+- The preparation time from start to end.
+- The preparation time for each order.
 
 ## Table of Contents
 
@@ -48,6 +49,16 @@ npm run docker:clean:all
 This command will execute the app on Docker container.
 The API is listening 3000 port.
 http://localhost:3000/api/v1/swagger
+
+### Status check:
+To check the container status you can execute this command or use Docker UI
+```bash
+docker container ls
+```
+After that you can see following containers run on your machine
+![docker](https://github.com/vladgthb/prm/blob/master/images/terminal.png?raw=true)
+![docker](https://github.com/vladgthb/prm/blob/master/images/docker.png?raw=true)
+
 
 ## Manual Installation
 
