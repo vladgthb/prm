@@ -32,7 +32,8 @@ orders. The report should contain:
 - [Prerequisites](#prerequisites)
 - [Getting started](#starting-the-application-with-docker-compose)
 - [Manual Installation](#manual-installation)
-- [Logic](#logic)
+- [Running the app](#running-the-app)
+- [Logic Description](#logic-description)
 
 ## Prerequisites
 - Before starting app, you need to install docker and docker-compose on your machine.
@@ -49,6 +50,8 @@ npm run docker:clean:all
 This command will execute the app on Docker container.
 ##### API access
 The API is listening 3000 port
+http://localhost:3000/api/v1
+##### Swagger
 http://localhost:3000/api/v1/swagger
 ##### MySQL DB
 The database can be accessed through 3008 port. You can use following credentials to connect to DB
@@ -77,7 +80,7 @@ Or use the Docker desktop
 $ npm install
 ```
 
-## Running the app
+#### Running the app manually
 
 ```bash
 # development
@@ -103,8 +106,20 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Logic
+## Running the app
+In order to test the api, you can use either the Swagger of the API or create a collection in the Postman
+<br/>
+#### How to create and process the orders
+Endpoint of the orders POST is
+http://localhost:3000/api/v1/orders
 
+```bash
+curl -X POST https://reqbin.com/echo/post/json
+   -H 'Content-Type: application/json'
+   -d '<Your orders json input see below example>'
+```
+
+Here is the example of input to create orders
 ```bash
 [
   {
@@ -141,3 +156,16 @@ $ npm run test:cov
   }
 ]
 ```
+
+## Logic Description
+
+- #### Initialization of the environment
+    Whenever the docker container starts on first time we are initializing the DB and creating personnel. This logic 
+    archived by simply defining the sql script and link it to the MySQL docker's container <br />
+    https://github.com/vladgthb/prm/blob/master/scripts/mysql/init.sql
+
+    The employees have availability prop in the DB status, which shows their availability to take a process. So 
+    whenever there is a new process, we can check the status and execute the step only if the employee is available.
+    If not available then wait 1 second to check the status again.
+- #### API process
+    Whenever we are pass
