@@ -171,3 +171,11 @@ Here is the example of input to create orders
     If not available then wait 1 second to check the status again.
 - #### API process
     Whenever there is new POST of the orders, the API creates the orders info in the DB
+    https://github.com/vladgthb/prm/blob/master/src/v1/services/orders.service.ts#L96
+
+    ![orders schema](https://github.com/vladgthb/prm/blob/master/images/table_orders.png?raw=true)
+
+    After that all orders are proceed parallel with async Promise.all
+    https://github.com/vladgthb/prm/blob/master/src/v1/services/orders.service.ts#L99
+
+    - Processing Logic of Each Order
