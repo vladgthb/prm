@@ -6,8 +6,11 @@
 
 The restaurant receives array of orders, while each order is for one Pizza that contains an array of
 toppings.
+<br />
 The dough-to-pizza pipeline is:
-Dough chef -> Topping chef -> Oven -> Serving
+- Dough chef -> Topping chef -> Oven -> Serving
+<br />
+<br />
 When a certain station within the pipeline is completed, the Pizza moves to the next one. There are no
 dependencies between the orders in the arrays - when an order is ready to be served, it is being
 deployed to the customer.
@@ -35,7 +38,12 @@ orders. The report should contain:
 
 ## Starting the application with docker-compose
 ```bash
+# Start the api app
 npm run docker:start
+# Stop the api app
+npm run docker:stop
+# Make docker clean
+npm run docker:clean:all
 ```
 This command will execute the app on Docker container.
 The API is listening 3000 port.
