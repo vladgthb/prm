@@ -170,4 +170,4 @@ Here is the example of input to create orders
     whenever there is a new process, we can check the status and execute the step only if the employee is available.
     If not available then wait 1 second to check the status again.
 - #### API process
-    Whenever we are pass
+    Whenever there is new POST of the orders, the API creates the orders info in the DB
